@@ -40,6 +40,7 @@ static const CGFloat kRefreshingViewHeight = 22;
 
 - (void)refreshingHideAnimationStopped {
   [_refreshingView removeFromSuperview];
+  [_tableView flashScrollIndicators];
   TT_RELEASE_MEMBER(_refreshingView);
 }
 

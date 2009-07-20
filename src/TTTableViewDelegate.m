@@ -114,6 +114,11 @@ static const CGFloat kSectionHeaderHeight = 35;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
   [TTURLRequestQueue mainQueue].suspended = NO;
+  
+  if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.frame.size.height)
+    if ([self.controller.dataSource respondsToSelector:@selector(canLoadMore)])
+        if ([self.controller.dataSource canLoadMore])
+            [self.controller.dataSource load:TTURLRequestCachePolicyDefault nextPage:YES];
 }
 
 @end
