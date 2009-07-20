@@ -235,7 +235,7 @@
         }
       } else if ([field isKindOfClass:[TTMessageTextField class]]) {
         UITextField* textField = [_fieldViews objectAtIndex:i];
-        if (!textField.text.isEmptyOrWhitespace) {
+        if (textField.text.isEmptyOrWhitespace) {
           compliant = NO;
         }
       }
@@ -477,6 +477,10 @@
     [NSTimer scheduledTimerWithTimeInterval:0 target:self
       selector:@selector(setTitleToSubject) userInfo:nil repeats:NO];
   }
+
+  [NSTimer scheduledTimerWithTimeInterval:0 target:self
+    selector:@selector(updateSendCommand) userInfo:nil repeats:NO];
+
   return YES;
 }
 
